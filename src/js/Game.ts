@@ -2,6 +2,12 @@ import { Snake } from "./Snake";
 import { Point } from "./Point";
 import * as settings from "./Settings";
 import { Apple } from "./Apple";
+import {
+  DirectionDown,
+  DirectionLeft,
+  DirectionRight,
+  DirectionUp
+} from "./IDirection";
 
 export class Game {
   canvas;
@@ -14,7 +20,18 @@ export class Game {
     this.canvas.width = settings.CANVAS_WIDTH;
     this.canvas.height = settings.CANVAS_HEIGHT;
     this.context = this.canvas.getContext("2d");
-    this.snake = new Snake(new Point(10, 10));
+    document.addEventListener(
+      "keydown",
+      function(e) {
+        this.keyEvent(e);
+      }.bind(this),
+      false
+    );
+    let defaultStartingPoint = new Point(
+      settings.CANVAS_WIDTH / 2,
+      settings.CANVAS_HEIGHT / 2
+    );
+    this.snake = new Snake(defaultStartingPoint, settings.SNAKE_LENGTH);
   }
   static addApples(snake: Snake, apples: Apple[]) {
     let appleIndex = snake.collide(apples);
@@ -35,15 +52,27 @@ export class Game {
         snake.draw(context);
         Game.addApples(snake, apples);
         apples.forEach(apple => {
-          apple.draw(context);
+          if (Math.random() > settings.APPLE_RATE) apple.draw(context);
         });
-        if (snake.isHitItSelf()) {
-          context.font = "48px serif";
-          context.fillStyle = settings.APPLE_COLOR;
-          context.fillText("Game over!", 50, 100);
-          clearInterval(intervalId);
-        }
       }, 100);
     })(this.context, this.snake, this.apples, this.intervalId);
+  }
+  keyEvent(key) {
+    switch (key.code) {
+      case "ArrowUp":
+        this.snake.direction = new DirectionUp();
+        break;
+      case "ArrowDown":
+        this.snake.direction = new DirectionDown();
+        break;
+      case "ArrowLeft":
+        this.snake.direction = new DirectionLeft();
+        break;
+      case "ArrowRight":
+        this.snake.direction = new DirectionRight();
+        break;
+      default:
+        break;
+    }
   }
 }

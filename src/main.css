@@ -1,0 +1,9 @@
+.container {
+  margin: 0 auto;
+  width: 800px;
+}
+.container__title {
+  color: #6f4c4c;
+  font-size: 2em;
+  text-align: center;
+}
