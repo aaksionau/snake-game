@@ -1,6 +1,7 @@
 .container {
   margin: 0 auto;
   width: 800px;
+  display: flex;
 }
 .container__title {
   color: #6f4c4c;
