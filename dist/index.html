@@ -6,12 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Snake game</title>
     <link rel="stylesheet" href="/main.af46ece4.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="/main.7ebd0bc5.js"></script>
 <script src="/main.af46ece4.js"></script></head>
 <body>
-<div class="container">
 <h1 class="container__title">Snake game</h1>
-    <canvas id="canvas"></canvas>
+
+<div class="container">
+    <div class="game">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="game__data">
+        <h2>About game:</h2>
+        <div>
+            <h3>Current level:</h3>
+            <span id="level"></span>
+        </div>
+        <div>
+            <h3>Your points:</h3>
+            <span id="points"></span>
+        </div>
+    </div>
+
 </div>
 
 </body>
