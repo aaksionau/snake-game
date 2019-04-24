@@ -19,19 +19,25 @@ export class Game {
 
   drawWelcome(text: string) {
     this.emptyCanvas();
-    this.context.fillStyle = "black";
+    this.context.fillStyle = "#75575D";
     this.context.font = "25px serif";
     this.context.fillText(text, 200, 100);
     this.context.fillText(
       "CurrentLevel is: " + this.currentLevel.name,
       200,
-      150
+      130
+    );
+    this.context.fillText(
+      "To move to the next level, get: " +
+        this.currentLevel.pointsToNextLevel.toString(),
+      200,
+      160
     );
     setTimeout(
       function() {
         this.run();
       }.bind(this),
-      1000
+      2000
     );
   }
   run() {
@@ -70,21 +76,21 @@ export class Game {
   }
   private addLevels() {
     let bronze = new Level();
-    bronze.appleQnty = 5;
+    bronze.appleQnty = 3;
     bronze.name = "Bronze";
     bronze.appleRate = 0.5;
     bronze.snakeLength = 5;
     bronze.snakeSpeed = 200;
-    bronze.pointsToNextLevel = 20;
+    bronze.pointsToNextLevel = 50;
     this.levels.push(bronze);
 
     let silver = new Level();
-    silver.appleQnty = 3;
+    silver.appleQnty = 2;
     silver.name = "Silver";
     silver.appleRate = 0.8;
     silver.snakeLength = 3;
     silver.snakeSpeed = 100;
-    silver.pointsToNextLevel = 30;
+    silver.pointsToNextLevel = 60;
     this.levels.push(silver);
 
     let gold = new Level();
@@ -93,7 +99,7 @@ export class Game {
     gold.appleRate = 0.9;
     gold.snakeLength = 5;
     gold.snakeSpeed = 80;
-    gold.pointsToNextLevel = 40;
+    gold.pointsToNextLevel = 80;
     this.levels.push(gold);
   }
   static addApples(apples: Apple[], currentLevel: Level) {
@@ -103,7 +109,7 @@ export class Game {
       apples = apples.splice(appleIndex, 1);
       currentLevel.addPoints();
     }
-    if (apples.length <= currentLevel.appleQnty) {
+    if (apples.length < currentLevel.appleQnty) {
       apples.push(new Apple());
     }
   }

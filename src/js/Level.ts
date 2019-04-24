@@ -30,6 +30,10 @@ export class Level {
   showLevel() {
     this.draw(this.name, "level");
     this.updatePoints();
+    this.toNextLevelPoints();
+  }
+  toNextLevelPoints() {
+    this.draw(this.pointsToNextLevel.toString(), "next_level");
   }
   updatePoints() {
     this.draw(this.points.toString(), "points");

@@ -10,24 +10,29 @@
     <script src="js/main.ts"></script>
 </head>
 <body>
-<h1 class="container__title">Snake game</h1>
 
 <div class="container">
+    <h1 class="container__title">Snake game</h1>
+    <p class="container__description">Made by Aliaksei Aksionau</p>
     <div class="game">
         <canvas id="canvas"></canvas>
+        <div class="game__data">
+            <h2>About game:</h2>
+            <div>
+                <h3>Current level:</h3>
+                <span id="level"></span>
+            </div>
+            <div>
+                <h3>For move to another level, get:</h3>
+                <span id="next_level"></span>
+            </div>
+            <div>
+                <h3>Your points:</h3>
+                <span id="points"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="game__data">
-        <h2>About game:</h2>
-        <div>
-            <h3>Current level:</h3>
-            <span id="level"></span>
-        </div>
-        <div>
-            <h3>Your points:</h3>
-            <span id="points"></span>
-        </div>
-    </div>
 
 </div>
 
